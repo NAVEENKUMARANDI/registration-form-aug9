@@ -61,6 +61,8 @@
     <label for="mobileNumber"> Mobile Number :</label>
     <input type="text" id="mobileNumber" formControlName="mobileNumber" maxlength="10" />(10 digit number)
 
+    <!------------------ Gender ----------------------------->
+
     <br><br>
     <div *ngIf="gender.errors?.required">
         <span style="color:Red" ng-show="studentProfile.required.$error.required"> Please select a Gender. </span>
@@ -69,8 +71,42 @@
     Male <input type="radio" formControlName="gender" id="gender" value="Male" />
     Female <input type="radio" formControlName="gender" id="gender" value="Female" />
 
+    <!------------------ Address ----------------------------->
+
     <br><br>
     <label for="address"> ADDRESS :</label>
-    <input type="text" id="password" formControlName="password" />
+    <input type="text" id="address" formControlName="address" />
 
+    <!------------------ CITY ----------------------------->
+
+    <br><br>
+    <label for="city"> CITY :</label>
+    <input type="text" id="city" formControlName="city" />
+
+    <!------------------ PIN CODE ----------------------------->
+
+    <br><br>
+    <label for="pinCode"> PIN CODE :</label>
+    <input type="text" id="pinCode" formControlName="pinCode" minlength="6"/>(6 digit number)
+
+    <!------------------ STATE ----------------------------->
+
+    <br><br>
+    <label for="state"> STATE :</label>
+    <input type="text" id="state" formControlName="state" />
+
+    <!------------------ COUNTRY ----------------------------->
+
+    <br><br>
+    <label for="country"> COUNTRY :</label>
+    <input type="text" id="country" formControlName="country" />
+
+    <!--    <br><br>
+    <label for="hobbies"> BOBBIES :</label>
+    <input type="text" id="hobbies" formControlName="hobbies" />
+
+    <br><br>
+    <label for="qualification"> QUALIFICATION :</label>
+    <input type="text" id="qualification" formControlName="qualification" />
+-->
 </form>

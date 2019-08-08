@@ -14,8 +14,12 @@ export class StudentRegistrationFormValidationComponent implements OnInit {
     lastName: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(10)]],
     email: ['', [Validators.required, Validators.maxLength(30)]],
     mobileNumber: ['', [Validators.required, Validators.maxLength(10)]],
-    gender: ['',[Validators.required]],
-    address: ['', [Validators.required]]
+    gender: ['', [Validators.required]],
+    address: ['', [Validators.required]],
+    city: ['', [Validators.required]],
+    pinCode: ['', [Validators.required, Validators.minLength(6)]],
+    state: ['', [Validators.required]],
+    country: ['', [Validators.required]]
   });
 
   constructor(private fb: FormBuilder) { }
@@ -38,12 +42,28 @@ export class StudentRegistrationFormValidationComponent implements OnInit {
   get mobileNumber() {
     return this.studentProfile.get('mobileNumber');
   }
-  
+
   get gender() {
     return this.studentProfile.get('gender');
   }
 
-  get password() {
+  get address() {
     return this.studentProfile.get('address');
+  }
+  get city() {
+    return this.studentProfile.get('city');
+  }
+  get pinCode() {
+    return this.studentProfile.get('pinCode');
+  }
+  get state() {
+    return this.studentProfile.get('state');
+  }
+  get country() {
+    return this.studentProfile.get('country');
+  }
+
+  onSubmit() {
+    console.warn(this.studentProfile.value);
   }
 }
