@@ -9,6 +9,9 @@ import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
 })
 export class StudentRegistrationFormValidationComponent implements OnInit {
 
+  States : any = ['TamilNadu', 'Karnataka', 'Kerala', 'Andhra Pradesh']
+  Country : any = ['India', 'UnitedState', "London"]
+
   studentProfile = this.fb.group({
     firstName: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(10)]],
     lastName: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(10)]],

@@ -41,11 +41,17 @@
                 5
                 chars.</span>
         </div>
+
         <div *ngIf="lastName.errors?.maxlength">
             <span style="color:Red" ng-show="studentProfile.lastName.$error.lastName"> Length of LastName is more than
                 10
                 chars.</span>
         </div>
+
+        <span style="color:Red" ng-show="studentProfile.email.$error.required"> Required! </span>
+
+        <span style="color:Red" ng-show="email.errors?.email">Please Enter Valid
+            Email</span>
 
     </div>
 
@@ -87,19 +93,41 @@
 
     <br><br>
     <label for="pinCode"> PIN CODE :</label>
-    <input type="text" id="pinCode" formControlName="pinCode" minlength="6"/>(6 digit number)
+    <input type="text" id="pinCode" formControlName="pinCode" minlength="6" />(6 digit number)
 
     <!------------------ STATE ----------------------------->
 
-    <br><br>
+<!--    <br><br>
     <label for="state"> STATE :</label>
-    <input type="text" id="state" formControlName="state" />
+    <input type="text" id="state" formControlName="state" /> -->
+
+    <br><br>
+    <div *ngIf="state.errors?.required">
+        <span style="color:brown" ng-show="studentProfile.required.$error.required"> Please select a State. </span>
+    </div>
+
+    <select multiple formControlName="state">
+        <option value="">Choose your state</option>
+        <option *ngFor="let state of States" [ngValue]="state" (change)="changeStates($event)">{{state}}
+        </option>
+    </select>
 
     <!------------------ COUNTRY ----------------------------->
 
-    <br><br>
+<!--    <br><br>
     <label for="country"> COUNTRY :</label>
-    <input type="text" id="country" formControlName="country" />
+    <input type="text" id="country" formControlName="country" /> -->
+
+    <br><br>
+    <div *ngIf="country.errors?.required">
+        <span style="color:Red" ng-show="studentProfile.required.$error.required"> Please select a Country. </span>
+    </div>
+
+    <select multiple formControlName="country">
+        <option value="">Choose your state</option>
+        <option *ngFor="let country of Country" [ngValue]="country" (change)="changeCountry($event)">{{country}}
+        </option>
+    </select>
 
     <!--    <br><br>
     <label for="hobbies"> BOBBIES :</label>
