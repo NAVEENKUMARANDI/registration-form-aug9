@@ -1,6 +1,8 @@
 <form [formGroup]="studentProfile" (ngSubmit)="onSubmit()">
 
-    <label for="firstName"> First Name :</label>
+    <!------------------ First Name ----------------------------->
+
+    <label for="firstName"> FIRST NAME :</label>
     <input type="text" id="firstName" formControlName="firstName" required />
 
     <div *ngIf="studentProfile.invalid" class="alert alert-danger">
@@ -23,8 +25,10 @@
         </div>
     </div>
 
+    <!------------------ Last Name ----------------------------->
+
     <br><br>
-    <label for="lastName"> Last Name :</label>
+    <label for="lastName"> LAST NAME :</label>
     <input type="text" id="lasttName" formControlName="lastName" />
 
     <div *ngIf="studentProfile.invalid" class="alert alert-danger">
@@ -38,9 +42,35 @@
                 chars.</span>
         </div>
         <div *ngIf="lastName.errors?.maxlength">
-            <span style="color:Red" ng-show="studentProfile.lastName.$error.lastName"> Length of LastName is more than 10
+            <span style="color:Red" ng-show="studentProfile.lastName.$error.lastName"> Length of LastName is more than
+                10
                 chars.</span>
         </div>
 
     </div>
+
+    <!------------------ Email Id ----------------------------->
+
+    <br><br>
+    <label for="email"> Email ID :</label>
+    <input type="text" id="email" formControlName="email" maxlength="30" />
+
+    <!------------------ Mobile Number ----------------------------->
+
+    <br><br>
+    <label for="mobileNumber"> Mobile Number :</label>
+    <input type="text" id="mobileNumber" formControlName="mobileNumber" maxlength="10" />(10 digit number)
+
+    <br><br>
+    <div *ngIf="gender.errors?.required">
+        <span style="color:Red" ng-show="studentProfile.required.$error.required"> Please select a Gender. </span>
+    </div>
+
+    Male <input type="radio" formControlName="gender" id="gender" value="Male" />
+    Female <input type="radio" formControlName="gender" id="gender" value="Female" />
+
+    <br><br>
+    <label for="address"> ADDRESS :</label>
+    <input type="text" id="password" formControlName="password" />
+
 </form>
