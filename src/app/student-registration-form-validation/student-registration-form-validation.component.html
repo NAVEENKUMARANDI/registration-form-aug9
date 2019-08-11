@@ -97,7 +97,7 @@
 
     <!------------------ STATE ----------------------------->
 
-<!--    <br><br>
+    <!--    <br><br>
     <label for="state"> STATE :</label>
     <input type="text" id="state" formControlName="state" /> -->
 
@@ -106,7 +106,7 @@
         <span style="color:brown" ng-show="studentProfile.required.$error.required"> Please select a State. </span>
     </div>
 
-    <select multiple formControlName="state">
+    <select formControlName="state">
         <option value="">Choose your state</option>
         <option *ngFor="let state of States" [ngValue]="state" (change)="changeStates($event)">{{state}}
         </option>
@@ -114,7 +114,7 @@
 
     <!------------------ COUNTRY ----------------------------->
 
-<!--    <br><br>
+    <!--    <br><br>
     <label for="country"> COUNTRY :</label>
     <input type="text" id="country" formControlName="country" /> -->
 
@@ -123,11 +123,31 @@
         <span style="color:Red" ng-show="studentProfile.required.$error.required"> Please select a Country. </span>
     </div>
 
-    <select multiple formControlName="country">
+    <select formControlName="country">
         <option value="">Choose your state</option>
         <option *ngFor="let country of Country" [ngValue]="country" (change)="changeCountry($event)">{{country}}
         </option>
     </select>
+<!------------------ HOBBIES ----------------------------->
+
+    <tr>
+        <td>HOBBIES <br /><br /><br /></td>
+
+        <td>
+            Drawing
+            <input type="checkbox" formControlName="drawing" id="drawing" value="Drawing" />
+
+            Singing
+            <input type="checkbox" formControlName="singing" id="singing" value="Singing" />
+
+            Dancing
+            <input type="checkbox" formControlName="dancing" id="dancing" value="Dancing" />
+
+            Others
+            <input type="checkbox" formControlName="others" id="others" value="Other">
+            <input type="text" formControlName="Other_Hobby" maxlength="15" />
+        </td>
+    </tr>
 
     <!--    <br><br>
     <label for="hobbies"> BOBBIES :</label>
@@ -137,4 +157,6 @@
     <label for="qualification"> QUALIFICATION :</label>
     <input type="text" id="qualification" formControlName="qualification" />
 -->
+    <button type="submit" [disabled]="!studentProfile.valid">Submit</button>
+
 </form>
