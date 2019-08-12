@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-student-registration-form-validation',
@@ -11,6 +11,14 @@ export class StudentRegistrationFormValidationComponent implements OnInit {
 
   States : any = ['TamilNadu', 'Karnataka', 'Kerala', 'Andhra Pradesh']
   Country : any = ['India', 'UnitedState', "London"]
+
+  qualificationArrayItems: {
+    qualificationNumber: number,
+    exam: string,
+    board: string,
+    percentage: number,
+    yearOfPassing: number
+  }[];
 
   studentProfile = this.fb.group({
     firstName: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(10)]],
@@ -27,12 +35,28 @@ export class StudentRegistrationFormValidationComponent implements OnInit {
     singing: ['', [Validators.required]],
     dancing: ['', [Validators.required]],
     others: ['', [Validators.required]],
-    Other_Hobby: ['',[Validators.required, Validators.maxLength(15)]]
+    Other_Hobby: ['',[Validators.required, Validators.maxLength(15)]],
+    course: ['',[Validators.required]],
+    
+    qualificationArray: this.fb.array([])
   });
+
+  qualificationFormGroup():FormGroup {
+    return this.fb.group({
+
+    qualificationNumber: ['',Validators.required],
+    exam:  ['',[Validators.required]],
+    board: ['',[Validators.required, Validators.maxLength(15)]],
+    percentage: ['',[Validators.required]],
+    yearOfPassing: ['',[Validators.required]]
+    });
+  }
 
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
+
+    this.qualificationArrayItems = [];
   }
 
   get firstName() {
@@ -85,6 +109,24 @@ export class StudentRegistrationFormValidationComponent implements OnInit {
   }
   get Other_Hobby() {
     return this.studentProfile.get('Other_Hobby');
+  }
+
+  get qualificationArray() {
+    return this.studentProfile.get('qualificationArray') as FormArray;
+  }
+  get percentage() {
+    return this.studentProfile.get('percentage');
+  }
+  get board() {
+    return this.studentProfile.get('board');
+  }
+  get course() {
+    return this.studentProfile.get('course');
+  }
+  addQualification() {
+    this.qualificationArray.push(
+      this.qualificationFormGroup()
+    );
   }
   onSubmit() {
     console.warn(this.studentProfile.value);

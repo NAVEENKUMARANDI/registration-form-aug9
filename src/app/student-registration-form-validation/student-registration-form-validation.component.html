@@ -128,7 +128,7 @@
         <option *ngFor="let country of Country" [ngValue]="country" (change)="changeCountry($event)">{{country}}
         </option>
     </select>
-<!------------------ HOBBIES ----------------------------->
+    <!------------------ HOBBIES ----------------------------->
 
     <tr>
         <td>HOBBIES <br /><br /><br /></td>
@@ -157,6 +157,70 @@
     <label for="qualification"> QUALIFICATION :</label>
     <input type="text" id="qualification" formControlName="qualification" />
 -->
-    <button type="submit" [disabled]="!studentProfile.valid">Submit</button>
+    <!------------------------ QUALIFICATION --------------------------->
 
+    <div formArrayName="qualificationArray">
+        <h3>Qualifications:</h3>
+        <button (click)="addQualification()">Add Qualification</button>
+
+        <br><br>
+        <div *ngFor="let qualificationArrayItem of qualificationArray.controls; let qualificationIndex=index">
+
+
+            <div [formGroupName]="qualificationIndex">
+                <input type="checkbox" formControlName="qualificationNumber" />
+                <label>
+                    Exam :
+                    <input type="text" formControlName="exam" />
+                </label>
+
+                <label>
+                    Board :
+                    <input type="text" formControlName="board" maxlength="20" /> (10 char max)
+                </label>
+
+                <div *ngIf="(qualificationArrayItem.get('board').errors && (qualificationArrayItem.get('board').dirty || qualificationArrayItem.get('board').touched)) || 
+        (qualificationArrayItem.get('board').untouched && formSubmitAttempt)" class="alert alert-danger">
+
+                    <div *ngIf="qualificationArrayItem.get('board').errors.required">
+                        <span style="color:Red">Board is required.</span>
+                    </div>
+
+                    <div *ngIf="qualificationArrayItem.get('board').errors.maxlength">
+                        <span style="color:Red"> Length of Board is
+                            more than
+                            15
+                            chars.</span>
+                    </div>
+                </div>
+
+                <label>
+                    Percentage :
+                    <input type="text" formControlName="percentage" />
+                </label>
+
+                <label>
+                    Year Of Passing :
+                    <input type="text" formControlName="yearOfPassing" />
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <br><br>
+    <div *ngIf="course.errors?.required">
+        <span style="color:Red" ng-show="studentProfile.required.$error.required"> COURSES APPLIED FOR. </span>
+    </div>
+
+    BCA <input type="radio" formControlName="course" id="course" value="BCA" />
+    B.Com <input type="radio" formControlName="course" id="course" value="B.Com" />
+    B.Sc <input type="radio" formControlName="course" id="course" value="B.Sc" />
+    B.A <input type="radio" formControlName="course" id="course" value="B.A" />
+
+    <div *ngIf="isSubmitted && myForm.invalid">
+        <p>Please select either value</p>
+    </div>
+
+    <br><br>
+    <button type="submit" [disabled]="!studentProfile.valid">Submit</button>
 </form>
