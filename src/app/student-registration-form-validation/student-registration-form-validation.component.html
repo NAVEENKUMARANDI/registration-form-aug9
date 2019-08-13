@@ -33,7 +33,7 @@
 
     <div *ngIf="studentProfile.invalid" class="alert alert-danger">
         <div *ngIf="lastName.errors?.minlength">
-            LastName is required.
+            <span style="color:blueviolet"> LastName is required. </span>
         </div>
 
         <div *ngIf="lastName.errors?.minlength">
